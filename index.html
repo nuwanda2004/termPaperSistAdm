@@ -5,31 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>СисАдмин - Главная</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    /* Глобальные стили */
+    * {
       margin: 0;
       padding: 0;
-      background-color: #f5f5f5;
-      color: #333;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      color: #1d1d1f;
+      line-height: 1.5;
     }
 
     .container {
-      width: 80%;
+      width: 100%;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 0 20px;
     }
 
+    /* Навигация */
     header {
-      background-color: #2c3e50;
-      color: white;
-      padding: 15px 0;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-      margin-left: 20px;
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     nav {
@@ -37,6 +43,13 @@
       justify-content: space-between;
       align-items: center;
       padding: 0 20px;
+      height: 44px;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: 500;
+      color: #ffffff;
     }
 
     .nav-links {
@@ -49,105 +62,208 @@
     }
 
     .nav-links a {
-      color: white;
+      color: #f5f5f7;
       text-decoration: none;
-      padding: 8px 15px;
-      border-radius: 4px;
-      transition: background-color 0.3s;
+      font-size: 14px;
+      opacity: 0.8;
+      transition: opacity 0.3s;
     }
 
     .nav-links a:hover {
-      background-color: #34495e;
+      opacity: 1;
     }
 
+    /* Герой-секция */
     .hero {
-      background-color: #3498db;
+      height: 600px;
+      background-color: #000;
       color: white;
-      padding: 50px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      margin-bottom: 30px;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/600');
+      background-size: cover;
+      background-position: center;
     }
 
     .hero h1 {
-      font-size: 36px;
-      margin-bottom: 20px;
+      font-size: 56px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      letter-spacing: -0.5px;
     }
 
     .hero p {
-      font-size: 18px;
-      max-width: 800px;
-      margin: 0 auto;
+      font-size: 27px;
+      font-weight: 400;
+      max-width: 600px;
+      margin: 0 auto 30px;
     }
 
     .btn {
       display: inline-block;
-      background-color: #e74c3c;
+      background-color: #0071e3;
       color: white;
-      padding: 10px 20px;
-      margin-top: 20px;
-      border-radius: 4px;
+      padding: 12px 25px;
+      border-radius: 30px;
       text-decoration: none;
-      transition: background-color 0.3s;
+      font-size: 17px;
+      font-weight: 400;
+      transition: all 0.3s;
     }
 
     .btn:hover {
-      background-color: #c0392b;
+      background-color: #0077ed;
+      transform: scale(1.02);
     }
 
-    .featured-section {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      margin-bottom: 40px;
+    /* Основные секции */
+    .section-title {
+      font-size: 48px;
+      font-weight: 600;
+      text-align: center;
+      margin: 80px 0 50px;
+      letter-spacing: -0.5px;
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+      padding: 0 20px;
+      margin-bottom: 100px;
     }
 
     .featured-card {
-      width: 30%;
-      background-color: white;
-      padding: 20px;
+      background-color: #f5f5f7;
+      border-radius: 18px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .featured-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-image {
+      height: 300px;
+      background-color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+    }
+
+    .card-content {
+      padding: 30px;
+    }
+
+    .card-content h3 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #1d1d1f;
+    }
+
+    .card-content p {
+      font-size: 17px;
+      color: #515154;
       margin-bottom: 20px;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
-    .featured-card h3 {
-      color: #2c3e50;
-      margin-top: 0;
+    .learn-more {
+      display: inline-flex;
+      align-items: center;
+      color: #0071e3;
+      font-size: 17px;
+      text-decoration: none;
     }
 
-    .why-sysadmin {
-      background-color: #ecf0f1;
-      padding: 40px 20px;
-      border-radius: 5px;
-      margin-bottom: 40px;
+    .learn-more::after {
+      content: "→";
+      margin-left: 5px;
+      transition: transform 0.2s;
     }
 
+    .learn-more:hover::after {
+      transform: translateX(3px);
+    }
+
+    /* Секция навыков */
     .skills-section {
-      margin-bottom: 40px;
+      background-color: #f5f5f7;
+      padding: 80px 0;
+      margin: 80px 0;
+    }
+
+    .skills-title {
+      font-size: 40px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 50px;
+      letter-spacing: -0.5px;
     }
 
     .skills-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
     .skill-card {
-      width: 22%;
-      text-align: center;
-      padding: 15px;
-      margin-bottom: 20px;
       background-color: white;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     }
 
-    footer {
-      background-color: #2c3e50;
-      color: white;
+    .skill-card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #1d1d1f;
+    }
+
+    .skill-card p {
+      font-size: 15px;
+      color: #515154;
+    }
+
+    /* Секция быстрых ссылок */
+    .quick-links {
       text-align: center;
-      padding: 20px 0;
-      margin-top: 50px;
+      margin: 80px 0;
+    }
+
+    .quick-links h2 {
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+
+    .quick-links .btn {
+      margin: 0 10px;
+    }
+
+    /* Футер */
+    footer {
+      background-color: #f5f5f7;
+      padding: 30px 0;
+      text-align: center;
+      font-size: 14px;
+      color: #86868b;
+    }
+
+    footer p {
+      margin: 5px 0;
     }
   </style>
 </head>
@@ -169,84 +285,81 @@
 </header>
 
 <div class="hero">
-  <div class="container">
-    <h1>Добро пожаловать в мир системного администрирования</h1>
-    <p>Получите знания, инструменты и поддержку для успешного системного администрирования</p>
-    <a href="register.html" class="btn">Присоединиться сейчас</a>
+  <h1>Мастерство системного администрирования</h1>
+  <p>Совершенствуйте навыки и управляйте IT-инфраструктурой с абсолютной уверенностью</p>
+  <a href="register.html" class="btn">Начать сейчас</a>
+</div>
+
+<h2 class="section-title">Наши ключевые направления</h2>
+
+<div class="container">
+  <div class="featured-grid">
+    <div class="featured-card">
+      <div class="card-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/api/placeholder/600/300'); background-size: cover;">
+        <span>Виртуализация</span>
+      </div>
+      <div class="card-content">
+        <h3>Средства управления виртуальными машинами и операционными средами</h3>
+        <p>Изучите эффективные методы создания, настройки и управления виртуальными машинами, контейнерами и микросервисами. Освойте технологии VMware, Hyper-V, KVM, Docker и Kubernetes для оптимизации IT-инфраструктуры.</p>
+        <a href="tutorials.html" class="learn-more">Узнать больше</a>
+      </div>
+    </div>
+    <div class="featured-card">
+      <div class="card-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/api/placeholder/600/300'); background-size: cover;">
+        <span>Резервное копирование</span>
+      </div>
+      <div class="card-content">
+        <h3>Средства резервного копирования и восстановления данных</h3>
+        <p>Разработайте надежные стратегии защиты данных с использованием современных решений для резервного копирования. Освойте практики мгновенного восстановления, репликации и управления хранилищами для обеспечения непрерывности бизнеса.</p>
+        <a href="tutorials.html" class="learn-more">Узнать больше</a>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="container">
-  <div class="featured-section">
-    <div class="featured-card">
-      <h3>Настройка сервера Linux</h3>
-      <p>Узнайте, как настроить безопасный и эффективный сервер Linux для вашей организации.</p>
-      <a href="tutorials.html" class="btn">Читать далее</a>
-    </div>
-    <div class="featured-card">
-      <h3>Мониторинг сетевой инфраструктуры</h3>
-      <p>Лучшие практики и инструменты для мониторинга и поддержания здоровья вашей сети.</p>
-      <a href="tutorials.html" class="btn">Читать далее</a>
-    </div>
-    <div class="featured-card">
-      <h3>Резервное копирование и восстановление</h3>
-      <p>Стратегии и решения для надежного резервного копирования и быстрого восстановления данных.</p>
-      <a href="tutorials.html" class="btn">Читать далее</a>
-    </div>
-  </div>
-
-  <div class="why-sysadmin">
-    <h2>Зачем нужно системное администрирование?</h2>
-    <p>Системное администрирование — это основа стабильной и безопасной ИТ-инфраструктуры любой организации. Системные администраторы обеспечивают:</p>
-    <ul>
-      <li>Непрерывную работу критических сервисов и приложений</li>
-      <li>Защиту от внешних и внутренних угроз безопасности</li>
-      <li>Быстрое восстановление после сбоев и аварий</li>
-      <li>Оптимальное использование ИТ-ресурсов компании</li>
-      <li>Поддержку конечных пользователей</li>
-    </ul>
-  </div>
-
-  <div class="skills-section">
-    <h2>Ключевые навыки системного администратора</h2>
+<div class="skills-section">
+  <div class="container">
+    <h2 class="skills-title">Ключевые навыки системного администратора</h2>
     <div class="skills-grid">
-      <div class="skill-card">
-        <h3>Сетевые технологии</h3>
-        <p>TCP/IP, маршрутизация, VPN, безопасность</p>
-      </div>
-      <div class="skill-card">
-        <h3>Операционные системы</h3>
-        <p>Windows Server, Linux, macOS</p>
-      </div>
-      <div class="skill-card">
-        <h3>Безопасность</h3>
-        <p>Брандмауэры, IDS/IPS, шифрование</p>
-      </div>
       <div class="skill-card">
         <h3>Виртуализация</h3>
         <p>VMware, Hyper-V, KVM, Docker</p>
-      </div>
-      <div class="skill-card">
-        <h3>Скриптинг</h3>
-        <p>PowerShell, Bash, Python</p>
-      </div>
-      <div class="skill-card">
-        <h3>Базы данных</h3>
-        <p>SQL, MySQL, PostgreSQL</p>
       </div>
       <div class="skill-card">
         <h3>Облачные технологии</h3>
         <p>AWS, Azure, GCP</p>
       </div>
       <div class="skill-card">
+        <h3>Безопасность</h3>
+        <p>Брандмауэры, IDS/IPS, шифрование</p>
+      </div>
+      <div class="skill-card">
+        <h3>Скриптинг</h3>
+        <p>PowerShell, Bash, Python</p>
+      </div>
+      <div class="skill-card">
+        <h3>Операционные системы</h3>
+        <p>Windows Server, Linux, macOS</p>
+      </div>
+      <div class="skill-card">
+        <h3>Сетевые технологии</h3>
+        <p>TCP/IP, маршрутизация, VPN</p>
+      </div>
+      <div class="skill-card">
         <h3>Мониторинг</h3>
         <p>Nagios, Zabbix, Prometheus</p>
       </div>
+      <div class="skill-card">
+        <h3>Базы данных</h3>
+        <p>SQL, MySQL, PostgreSQL</p>
+      </div>
     </div>
   </div>
+</div>
 
+<div class="container">
   <div class="quick-links">
-    <h2>Быстрый доступ</h2>
+    <h2>Начните своё обучение</h2>
     <a href="tutorials.html" class="btn">Учебные материалы</a>
     <a href="tools.html" class="btn">Инструменты</a>
     <a href="forum.html" class="btn">Форум</a>
