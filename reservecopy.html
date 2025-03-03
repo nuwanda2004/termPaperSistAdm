@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>СисАдмин - Резервное копирование</title>
+  <style>
+    /* Глобальные стили */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      color: #1d1d1f;
+      line-height: 1.5;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Навигация */
+    header {
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      height: 44px;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: 500;
+      color: #ffffff;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-links li {
+      margin: 0 10px;
+    }
+
+    .nav-links a {
+      color: #f5f5f7;
+      text-decoration: none;
+      font-size: 14px;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    /* Герой-секция */
+    .hero {
+      height: 500px;
+      background-color: #000;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/600');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero h1 {
+      font-size: 56px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero p {
+      font-size: 27px;
+      font-weight: 400;
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #0071e3;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 400;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #0077ed;
+      transform: scale(1.02);
+    }
+
+    /* Основные секции */
+    .section-title {
+      font-size: 48px;
+      font-weight: 600;
+      text-align: center;
+      margin: 80px 0 50px;
+      letter-spacing: -0.5px;
+    }
+
+    .section-subtitle {
+      font-size: 28px;
+      font-weight: 500;
+      text-align: center;
+      margin: 40px 0 20px;
+      letter-spacing: -0.3px;
+      color: #1d1d1f;
+    }
+
+    /* Стили для основного контента */
+    .content-section {
+      padding: 60px 0;
+    }
+
+    .content-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .content-container p {
+      font-size: 17px;
+      color: #333;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    /* Карточки решений */
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin: 50px 0;
+    }
+
+    .solution-card {
+      background-color: #f5f5f7;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .solution-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .solution-image {
+      height: 160px;
+      background-color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+    }
+
+    .solution-content {
+      padding: 20px;
+    }
+
+    .solution-content h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #1d1d1f;
+    }
+
+    .solution-content p {
+      font-size: 15px;
+      color: #515154;
+      margin-bottom: 15px;
+    }
+
+    /* Стратегии резервного копирования */
+    .strategy-section {
+      background-color: #f5f5f7;
+      padding: 60px 0;
+      margin: 60px 0;
+    }
+
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .strategy-card {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .strategy-card h3 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #1d1d1f;
+      display: flex;
+      align-items: center;
+    }
+
+    .strategy-number {
+      background-color: #0071e3;
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .strategy-card p {
+      font-size: 16px;
+      color: #515154;
+    }
+
+    /* Футер */
+    footer {
+      background-color: #f5f5f7;
+      padding: 30px 0;
+      text-align: center;
+      font-size: 14px;
+      color: #86868b;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    /* Таблица сравнения решений */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 40px 0;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .comparison-table th {
+      background-color: #f5f5f7;
+      font-weight: 600;
+      color: #1d1d1f;
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .comparison-table tr:hover {
+      background-color: #f9f9f9;
+    }
+
+    /* Секция "Часто задаваемые вопросы" */
+    .faq-section {
+      margin: 60px 0;
+    }
+
+    .faq-item {
+      margin-bottom: 20px;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 20px;
+    }
+
+    .faq-question {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #1d1d1f;
+    }
+
+    .faq-answer {
+      font-size: 17px;
+      color: #515154;
+    }
+
+    /* Секция "Начните сейчас" */
+    .cta-section {
+      background-color: #0071e3;
+      color: white;
+      padding: 60px 0;
+      text-align: center;
+      margin: 60px 0 0 0;
+    }
+
+    .cta-section h2 {
+      font-size: 36px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .cta-section p {
+      font-size: 20px;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+
+    .btn-white {
+      background-color: white;
+      color: #0071e3;
+    }
+
+    .btn-white:hover {
+      background-color: #f5f5f7;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <div class="logo">СисАдмин</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="tutorials.html">Учебные материалы</a></li>
+      <li><a href="tools.html">Инструменты</a></li>
+      <li><a href="forum.html">Форум</a></li>
+      <li><a href="about.html">О нас</a></li>
+      <li><a href="contacts.html">Контакты</a></li>
+      <li><a href="login.html">Вход</a></li>
+      <li><a href="register.html">Регистрация</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="hero">
+  <h1>Резервное копирование</h1>
+  <p>Защитите критически важные данные и обеспечьте непрерывность бизнеса с помощью современных решений</p>
+  <a href="#solutions" class="btn">Изучить решения</a>
+</div>
+
+<div class="container content-section">
+  <div class="content-container">
+    <h2 class="section-title">Основы резервного копирования</h2>
+    <p>Резервное копирование — это процесс создания копий данных, которые могут быть восстановлены в случае потери первичных данных. Потеря данных может произойти по разным причинам, включая сбои оборудования, человеческие ошибки, кибератаки или стихийные бедствия.</p>
+    <p>Резервное копирование является важнейшим компонентом стратегии восстановления после сбоев и обеспечения непрерывности бизнеса. Без надежной системы резервного копирования организации рискуют потерять критически важную информацию, что может привести к серьезным финансовым и репутационным потерям.</p>
+  </div>
+</div>
+
+<div class="container">
+  <h2 class="section-subtitle">Типы резервного копирования</h2>
+  <div class="solutions-grid">
+    <div class="solution-card">
+      <div class="solution-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/api/placeholder/400/200'); background-size: cover;">
+        <span>Полное</span>
+      </div>
+      <div class="solution-content">
+        <h3>Полное резервное копирование</h3>
+        <p>Полная копия всех выбранных данных. Самый надежный, но и самый ресурсоемкий метод, требующий больше времени и пространства для хранения.</p>
+      </div>
+    </div>
+    <div class="solution-card">
+      <div class="solution-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/api/placeholder/400/200'); background-size: cover;">
+        <span>Дифференциальное</span>
+      </div>
+      <div class="solution-content">
+        <h3>Дифференциальное копирование</h3>
+        <p>Резервная копия всех изменений, произошедших после последнего полного резервного копирования. Баланс между скоростью создания и восстановления.</p>
+      </div>
+    </div>
+    <div class="solution-card">
+      <div class="solution-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/api/placeholder/400/200'); background-size: cover;">
+        <span>Инкрементное</span>
+      </div>
+      <div class="solution-content">
+        <h3>Инкрементное копирование</h3>
+        <p>Сохраняет только изменения с момента последнего резервного копирования любого типа. Самый быстрый метод, но может усложнить процесс восстановления.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="strategy-section">
+  <div class="container">
+    <h2 class="section-subtitle">Стратегии резервного копирования</h2>
+    <div class="strategy-grid">
+      <div class="strategy-card">
+        <h3><span class="strategy-number">1</span>Правило 3-2-1</h3>
+        <p>Создавайте не менее трех копий данных, храните их на двух различных типах носителей, и одну копию храните в удаленном месте. Это базовая стратегия, которая обеспечивает надежную защиту от большинства сценариев потери данных.</p>
+      </div>
+      <div class="strategy-card">
+        <h3><span class="strategy-number">2</span>Правило 3-2-1-1-0</h3>
+        <p>Расширенная версия правила 3-2-1, которая добавляет одну офлайн-копию (защита от программ-вымогателей) и нулевую ошибку при восстановлении (регулярное тестирование процесса восстановления).</p>
+      </div>
+      <div class="strategy-card">
+        <h3><span class="strategy-number">3</span>Многоуровневое хранение</h3>
+        <p>Использование различных уровней хранения данных в зависимости от их важности и частоты доступа: горячее хранилище для критических данных, теплое для регулярно используемых и холодное для архивных данных.</p>
+      </div>
+      <div class="strategy-card">
+        <h3><span class="strategy-number">4</span>Непрерывная защита данных</h3>
+        <p>Автоматическое сохранение каждого изменения данных в режиме реального времени, что позволяет восстановить состояние системы на любой момент времени (point-in-time recovery).</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container content-section" id="solutions">
+  <h2 class="section-title">Современные решения для резервного копирования</h2>
+
+  <div class="content-container">
+    <h3 class="section-subtitle">Сравнение популярных решений</h3>
+
+    <table class="comparison-table">
+      <thead>
+      <tr>
+        <th>Решение</th>
+        <th>Возможности</th>
+        <th>Идеально для</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Veeam Backup & Replication</td>
+        <td>Защита виртуальных, физических и облачных сред; мгновенное восстановление VM; непрерывная репликация данных</td>
+        <td>Средних и крупных организаций с гетерогенными средами</td>
+      </tr>
+      <tr>
+        <td>Acronis Cyber Protect</td>
+        <td>Комплексное решение с интегрированной киберзащитой; защита от программ-вымогателей; восстановление на "голое железо"</td>
+        <td>Организаций, нуждающихся в едином решении для резервного копирования и безопасности</td>
+      </tr>
+      <tr>
+        <td>Commvault Complete Backup & Recovery</td>
+        <td>Масштабируемая архитектура; автоматизация; интеграция с облачными сервисами; дедупликация</td>
+        <td>Корпоративных сред с большими объемами данных и сложной инфраструктурой</td>
+      </tr>
+      <tr>
+        <td>Veritas NetBackup</td>
+        <td>Корпоративное решение с поддержкой разнородных платформ; интеграция со многими приложениями; автоматизация</td>
+        <td>Крупных предприятий с критически важными бизнес-приложениями</td>
+      </tr>
+      <tr>
+        <td>Bacula Enterprise</td>
+        <td>Открытая архитектура; модульный дизайн; широкие возможности настройки; поддержка большого количества устройств</td>
+        <td>Организаций, ценящих гибкость и контроль над процессом резервного копирования</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <h3 class="section-subtitle">Облачные решения для резервного копирования</h3>
+    <p>Современные облачные решения для резервного копирования предлагают гибкость, масштабируемость и отказоустойчивость. Они идеально подходят для организаций, стремящихся сократить инвестиции в собственную инфраструктуру резервного копирования.</p>
+
+    <div class="solutions-grid">
+      <div class="solution-card">
+        <div class="solution-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/api/placeholder/400/200'); background-size: cover;">
+          <span>Microsoft</span>
+        </div>
+        <div class="solution-content">
+          <h3>Microsoft Azure Backup</h3>
+          <p>Интегрированное облачное решение для защиты данных в Azure, локальных серверах и рабочих нагрузок Microsoft 365.</p>
+        </div>
+      </div>
+      <div class="solution-card">
+        <div class="solution-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/api/placeholder/400/200'); background-size: cover;">
+          <span>AWS</span>
+        </div>
+        <div class="solution-content">
+          <h3>AWS Backup</h3>
+          <p>Централизованное управление и автоматизация резервного копирования данных в различных сервисах AWS.</p>
+        </div>
+      </div>
+      <div class="solution-card">
+        <div class="solution-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/api/placeholder/400/200'); background-size: cover;">
+          <span>Google</span>
+        </div>
+        <div class="solution-content">
+          <h3>Google Cloud Backup and DR</h3>
+          <p>Управляемое решение для резервного копирования и аварийного восстановления в Google Cloud.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="faq-section">
+    <h2 class="section-subtitle">Часто задаваемые вопросы</h2>
+
+    <div class="faq-item">
+      <div class="faq-question">Как часто нужно выполнять резервное копирование?</div>
+      <div class="faq-answer">Частота резервного копирования зависит от темпов изменения данных и допустимого риска потери данных. Для критически важных систем рекомендуется ежедневное или даже непрерывное резервное копирование. Для менее важных данных может быть достаточно еженедельного или ежемесячного копирования.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Как долго следует хранить резервные копии?</div>
+      <div class="faq-answer">Срок хранения резервных копий определяется требованиями бизнеса, отраслевыми стандартами и нормативными актами. Обычно применяется многоуровневый подход: ежедневные копии хранятся 1-2 недели, еженедельные — 1-3 месяца, ежемесячные — 1-7 лет. Некоторые организации также создают годовые архивы, которые хранятся бессрочно.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Нужно ли шифровать резервные копии?</div>
+      <div class="faq-answer">Да, шифрование резервных копий — важная практика безопасности, особенно для конфиденциальных данных и при использовании облачных хранилищ. Шифрование защищает данные от несанкционированного доступа в случае физической кражи носителей или компрометации хранилища.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Как тестировать процесс восстановления?</div>
+      <div class="faq-answer">Регулярное тестирование восстановления из резервных копий необходимо для проверки их целостности и готовности процедур. Рекомендуется проводить тесты в изолированной среде, имитирующей различные сценарии отказа: восстановление отдельных файлов, полной системы, на другое оборудование и т.д. Результаты тестов должны документироваться, а выявленные проблемы — устраняться.</div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-section">
+  <div class="container">
+    <h2>Защитите свои данные уже сегодня</h2>
+    <p>Изучите наши учебные материалы по настройке систем резервного копирования и обеспечьте безопасность ваших критически важных данных</p>
+    <a href="tutorials.html" class="btn btn-white">Перейти к учебным материалам</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2025 Максимов Алексей. Все права защищены.</p>
+    <p>Разработано для курсовой работы</p>
+  </div>
+</footer>
+</body>
+</html>

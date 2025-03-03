@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>СисАдмин - Виртуализация</title>
+  <style>
+    /* Глобальные стили */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      color: #1d1d1f;
+      line-height: 1.5;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Навигация */
+    header {
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      height: 44px;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: 500;
+      color: #ffffff;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-links li {
+      margin: 0 10px;
+    }
+
+    .nav-links a {
+      color: #f5f5f7;
+      text-decoration: none;
+      font-size: 14px;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    /* Герой-секция */
+    .hero {
+      height: 400px;
+      background-color: #000;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/api/placeholder/1200/400');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero p {
+      font-size: 24px;
+      font-weight: 400;
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #0071e3;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 400;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #0077ed;
+      transform: scale(1.02);
+    }
+
+    /* Основные секции */
+    .section-title {
+      font-size: 40px;
+      font-weight: 600;
+      text-align: center;
+      margin: 60px 0 40px;
+      letter-spacing: -0.5px;
+    }
+
+    .section-subtitle {
+      font-size: 32px;
+      font-weight: 600;
+      margin: 50px 0 30px;
+      letter-spacing: -0.3px;
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+      padding: 0 20px;
+      margin-bottom: 60px;
+    }
+
+    .featured-card {
+      background-color: #f5f5f7;
+      border-radius: 18px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .featured-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-image {
+      height: 200px;
+      background-color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+    }
+
+    .card-content {
+      padding: 30px;
+    }
+
+    .card-content h3 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #1d1d1f;
+    }
+
+    .card-content p {
+      font-size: 17px;
+      color: #515154;
+      margin-bottom: 20px;
+    }
+
+    .learn-more {
+      display: inline-flex;
+      align-items: center;
+      color: #0071e3;
+      font-size: 17px;
+      text-decoration: none;
+    }
+
+    .learn-more::after {
+      content: "→";
+      margin-left: 5px;
+      transition: transform 0.2s;
+    }
+
+    .learn-more:hover::after {
+      transform: translateX(3px);
+    }
+
+    /* Секция контента */
+    .content-section {
+      margin: 60px 0;
+    }
+
+    .content-block {
+      margin-bottom: 40px;
+    }
+
+    .content-block h3 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #1d1d1f;
+    }
+
+    .content-block p {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+    .content-block ul {
+      margin: 20px 0;
+      padding-left: 25px;
+    }
+
+    .content-block li {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    /* Секция сравнения */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 30px 0;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #e6e6e6;
+    }
+
+    .comparison-table th {
+      background-color: #f5f5f7;
+      font-weight: 600;
+      color: #1d1d1f;
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .comparison-table tr:hover {
+      background-color: #f9f9f9;
+    }
+
+    /* Секция курсов */
+    .courses-section {
+      background-color: #f5f5f7;
+      padding: 60px 0;
+      margin: 60px 0;
+    }
+
+    .course-card {
+      background-color: white;
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .course-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .course-card h3 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #1d1d1f;
+    }
+
+    .course-card p {
+      font-size: 16px;
+      color: #515154;
+      margin-bottom: 15px;
+    }
+
+    .course-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 15px;
+      color: #6e6e73;
+    }
+
+    /* Секция быстрых ссылок */
+    .quick-links {
+      text-align: center;
+      margin: 60px 0;
+    }
+
+    .quick-links h2 {
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+
+    .quick-links .btn {
+      margin: 0 10px;
+    }
+
+    /* Футер */
+    footer {
+      background-color: #f5f5f7;
+      padding: 30px 0;
+      text-align: center;
+      font-size: 14px;
+      color: #86868b;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <div class="logo">СисАдмин</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="tutorials.html">Учебные материалы</a></li>
+      <li><a href="tools.html">Инструменты</a></li>
+      <li><a href="forum.html">Форум</a></li>
+      <li><a href="about.html">О нас</a></li>
+      <li><a href="contacts.html">Контакты</a></li>
+      <li><a href="login.html">Вход</a></li>
+      <li><a href="register.html">Регистрация</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="hero">
+  <h1>Виртуализация</h1>
+  <p>Мощные технологии для эффективного управления виртуальными средами и оптимизации IT-инфраструктуры</p>
+  <a href="tutorials.html" class="btn">Изучить курсы</a>
+</div>
+
+<div class="container">
+  <h2 class="section-title">Основные технологии виртуализации</h2>
+
+  <div class="featured-grid">
+    <div class="featured-card">
+      <div class="card-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/api/placeholder/600/300'); background-size: cover;">
+        <span>Виртуализация серверов</span>
+      </div>
+      <div class="card-content">
+        <h3>Серверная виртуализация</h3>
+        <p>Технологии для создания и управления виртуальными машинами, позволяющие максимально использовать мощности серверного оборудования, снизить затраты на инфраструктуру и обеспечить гибкость развертывания.</p>
+        <a href="#server-virtualization" class="learn-more">Подробнее</a>
+      </div>
+    </div>
+    <div class="featured-card">
+      <div class="card-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/api/placeholder/600/300'); background-size: cover;">
+        <span>Контейнеризация</span>
+      </div>
+      <div class="card-content">
+        <h3>Контейнерная виртуализация</h3>
+        <p>Легковесные контейнерные технологии для изоляции приложений и их зависимостей, обеспечивающие быстрое масштабирование, стандартизацию разработки и более эффективное использование ресурсов.</p>
+        <a href="#container-virtualization" class="learn-more">Подробнее</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <div id="server-virtualization" class="content-block">
+      <h3>Серверная виртуализация</h3>
+      <p>Серверная виртуализация позволяет запускать несколько виртуальных серверов на одном физическом сервере, что значительно повышает эффективность использования оборудования. Виртуальные машины (ВМ) изолированы друг от друга, имеют собственные операционные системы и могут быть легко перемещены между физическими серверами.</p>
+
+      <h4 class="section-subtitle">Основные платформы серверной виртуализации</h4>
+
+      <div class="featured-grid">
+        <div class="featured-card">
+          <div class="card-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/api/placeholder/600/300'); background-size: cover;">
+            <span>VMware</span>
+          </div>
+          <div class="card-content">
+            <h3>VMware vSphere</h3>
+            <p>Лидирующая платформа для виртуализации серверов, предлагающая широкий набор функций для управления виртуальными машинами, включая высокую доступность, миграцию в реальном времени и продвинутую систему безопасности.</p>
+          </div>
+        </div>
+        <div class="featured-card">
+          <div class="card-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/api/placeholder/600/300'); background-size: cover;">
+            <span>Microsoft</span>
+          </div>
+          <div class="card-content">
+            <h3>Microsoft Hyper-V</h3>
+            <p>Интегрированная в Windows Server технология виртуализации, обеспечивающая высокую производительность и совместимость с экосистемой Microsoft, включая инструменты управления System Center.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="featured-grid" style="margin-top: 40px;">
+        <div class="featured-card">
+          <div class="card-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/api/placeholder/600/300'); background-size: cover;">
+            <span>Linux</span>
+          </div>
+          <div class="card-content">
+            <h3>KVM (Kernel-based Virtual Machine)</h3>
+            <p>Открытая технология виртуализации, встроенная в ядро Linux, обеспечивающая высокую производительность и хорошо интегрирующаяся с другими открытыми технологиями, такими как QEMU и libvirt.</p>
+          </div>
+        </div>
+        <div class="featured-card">
+          <div class="card-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/api/placeholder/600/300'); background-size: cover;">
+            <span>Citrix</span>
+          </div>
+          <div class="card-content">
+            <h3>Citrix Hypervisor</h3>
+            <p>Платформа виртуализации, оптимизированная для рабочих нагрузок виртуальных десктопов и приложений, предлагающая улучшенную графическую производительность и тесную интеграцию с Citrix Virtual Apps and Desktops.</p>
+          </div>
+        </div>
+      </div>
+
+      <h4 class="section-subtitle">Преимущества серверной виртуализации</h4>
+      <ul>
+        <li><strong>Повышение эффективности использования ресурсов</strong> – консолидация нескольких рабочих нагрузок на одном физическом сервере</li>
+        <li><strong>Снижение затрат</strong> – уменьшение расходов на оборудование, энергопотребление и охлаждение</li>
+        <li><strong>Повышение отказоустойчивости</strong> – быстрое восстановление после сбоев и возможность миграции ВМ</li>
+        <li><strong>Гибкость развертывания</strong> – быстрое создание новых серверов и тестовых сред</li>
+        <li><strong>Упрощенное управление</strong> – централизованное управление всеми виртуальными машинами</li>
+      </ul>
+
+      <h4 class="section-subtitle">Сравнение платформ виртуализации</h4>
+      <table class="comparison-table">
+        <tr>
+          <th>Платформа</th>
+          <th>Гипервизор</th>
+          <th>Масштабируемость</th>
+          <th>Функции</th>
+          <th>Интеграция</th>
+        </tr>
+        <tr>
+          <td>VMware vSphere</td>
+          <td>Тип 1 (bare-metal)</td>
+          <td>Высокая (до 768 vCPU, 24TB RAM на хост)</td>
+          <td>vMotion, DRS, HA, FT, vSAN</td>
+          <td>Широкая экосистема VMware</td>
+        </tr>
+        <tr>
+          <td>Microsoft Hyper-V</td>
+          <td>Тип 1</td>
+          <td>Высокая (до 512 vCPU, 24TB RAM на хост)</td>
+          <td>Live Migration, Storage Migration, Replica</td>
+          <td>Azure, System Center</td>
+        </tr>
+        <tr>
+          <td>KVM</td>
+          <td>Тип 1 (встроен в ядро)</td>
+          <td>Высокая (до 288 vCPU, 4TB RAM на хост)</td>
+          <td>Live Migration, Storage Management</td>
+          <td>OpenStack, libvirt</td>
+        </tr>
+        <tr>
+          <td>Citrix Hypervisor</td>
+          <td>Тип 1</td>
+          <td>Средняя (до 288 vCPU, 1.5TB RAM на хост)</td>
+          <td>Live Migration, GPU Pass-through</td>
+          <td>Citrix Virtual Apps and Desktops</td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="container-virtualization" class="content-block">
+      <h3>Контейнерная виртуализация</h3>
+      <p>Контейнерная виртуализация представляет собой легковесную альтернативу виртуальным машинам. Контейнеры изолируют приложения и их зависимости, используя при этом общее ядро операционной системы хоста, что делает их более эффективными с точки зрения использования ресурсов.</p>
+
+      <h4 class="section-subtitle">Основные технологии контейнеризации</h4>
+
+      <div class="featured-grid">
+        <div class="featured-card">
+          <div class="card-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/api/placeholder/600/300'); background-size: cover;">
+            <span>Docker</span>
+          </div>
+          <div class="card-content">
+            <h3>Docker</h3>
+            <p>Самая популярная платформа контейнеризации, предоставляющая простые инструменты для создания, развертывания и запуска приложений в контейнерах. Docker стандартизировал формат контейнеров и экосистему инструментов.</p>
+          </div>
+        </div>
+        <div class="featured-card">
+          <div class="card-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/api/placeholder/600/300'); background-size: cover;">
+            <span>Kubernetes</span>
+          </div>
+          <div class="card-content">
+            <h3>Kubernetes</h3>
+            <p>Платформа оркестрации контейнеров, которая автоматизирует развертывание, масштабирование и управление контейнеризованными приложениями. Kubernetes обеспечивает высокую доступность и масштабируемость.</p>
+          </div>
+        </div>
+      </div>
+
+      <h4 class="section-subtitle">Преимущества контейнерной виртуализации</h4>
+      <ul>
+        <li><strong>Эффективность ресурсов</strong> – контейнеры потребляют меньше ресурсов, чем виртуальные машины</li>
+        <li><strong>Скорость запуска</strong> – контейнеры запускаются за секунды, в отличие от минут для ВМ</li>
+        <li><strong>"Пишите один раз, запускайте где угодно"</strong> – стандартизированное окружение</li>
+        <li><strong>Микросервисная архитектура</strong> – идеально подходит для современных подходов к разработке</li>
+        <li><strong>DevOps-интеграция</strong> – упрощает CI/CD процессы</li>
+      </ul>
+
+      <h4 class="section-subtitle">Сравнение ВМ и контейнеров</h4>
+      <table class="comparison-table">
+        <tr>
+          <th>Характеристика</th>
+          <th>Виртуальные машины</th>
+          <th>Контейнеры</th>
+        </tr>
+        <tr>
+          <td>Виртуализация</td>
+          <td>Полная (включая ядро ОС)</td>
+          <td>На уровне ОС (общее ядро)</td>
+        </tr>
+        <tr>
+          <td>Размер</td>
+          <td>Гигабайты</td>
+          <td>Мегабайты</td>
+        </tr>
+        <tr>
+          <td>Время запуска</td>
+          <td>Минуты</td>
+          <td>Секунды</td>
+        </tr>
+        <tr>
+          <td>Изоляция</td>
+          <td>Высокая</td>
+          <td>Средняя</td>
+        </tr>
+        <tr>
+          <td>Производительность</td>
+          <td>Хорошая, с накладными расходами</td>
+          <td>Близкая к нативной</td>
+        </tr>
+        <tr>
+          <td>Подходит для</td>
+          <td>Разные ОС, высокая изоляция</td>
+          <td>Микросервисы, DevOps, масштабирование</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="courses-section">
+  <div class="container">
+    <h2 class="skills-title">Рекомендуемые курсы по виртуализации</h2>
+
+    <div class="course-card">
+      <h3>Основы VMware vSphere: установка, настройка, управление</h3>
+      <p>Изучите основные компоненты VMware vSphere, научитесь устанавливать и настраивать ESXi и vCenter Server, управлять виртуальными машинами и создавать отказоустойчивую инфраструктуру.</p>
+      <div class="course-info">
+        <span>Длительность: 5 недель</span>
+        <span>Уровень: Начальный-Средний</span>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <h3>Практическое руководство по Microsoft Hyper-V</h3>
+      <p>Освойте технологию Hyper-V в Windows Server, включая настройку кластеров, репликацию, миграцию и интеграцию с System Center Virtual Machine Manager.</p>
+      <div class="course-info">
+        <span>Длительность: 4 недели</span>
+        <span>Уровень: Средний</span>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <h3>Docker и контейнеризация: от основ до продвинутого уровня</h3>
+      <p>Научитесь создавать, развертывать и управлять Docker-контейнерами, создавать собственные образы и использовать Docker Compose для оркестрации нескольких контейнеров.</p>
+      <div class="course-info">
+        <span>Длительность: 3 недели</span>
+        <span>Уровень: Начальный-Продвинутый</span>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <h3>Kubernetes для администраторов</h3>
+      <p>Погрузитесь в мир оркестрации контейнеров с Kubernetes, изучите управление кластерами, развертывание приложений, масштабирование и мониторинг контейнеризованных приложений.</p>
+      <div class="course-info">
+        <span>Длительность: 6 недель</span>
+        <span>Уровень: Продвинутый</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="quick-links">
+    <h2>Хотите узнать больше?</h2>
+    <a href="tutorials.html" class="btn">Все учебные материалы</a>
+    <a href="tools.html" class="btn">Рекомендуемые инструменты</a>
+    <a href="forum.html" class="btn">Обсудить на форуме</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2025 Максимов Алексей. Все права защищены.</p>
+    <p>Разработано для курсовой работы</p>
+  </div>
+</footer>
+</body>
+</html>
