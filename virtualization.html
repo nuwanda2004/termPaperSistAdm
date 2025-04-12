@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>СисАдмин - Виртуализация</title>
+  <title>СисАдмин - Виртуализация на MacBook</title>
   <style>
     /* Глобальные стили */
     * {
@@ -139,6 +139,14 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 40px;
+      padding: 0 20px;
+      margin-bottom: 60px;
+    }
+
+    .featured-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
       padding: 0 20px;
       margin-bottom: 60px;
     }
@@ -337,6 +345,22 @@
     footer p {
       margin: 5px 0;
     }
+
+    /* Секция скриншотов */
+    .screenshot {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin: 20px 0;
+    }
+
+    .mac-specific {
+      background-color: #f0f9ff;
+      border-left: 4px solid #0071e3;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 0 8px 8px 0;
+    }
   </style>
 </head>
 <body>
@@ -357,269 +381,296 @@
 </header>
 
 <div class="hero">
-  <h1>Виртуализация</h1>
-  <p>Мощные технологии для эффективного управления виртуальными средами и оптимизации IT-инфраструктуры</p>
+  <h1>Виртуализация на MacBook</h1>
+  <p>Мощные технологии для эффективного управления виртуальными средами на компьютерах Apple</p>
   <a href="tutorials.html" class="btn">Изучить курсы</a>
 </div>
 
 <div class="container">
-  <h2 class="section-title">Основные технологии виртуализации</h2>
+  <h2 class="section-title">Популярные решения для виртуализации на MacBook</h2>
 
-  <div class="featured-grid">
+  <div class="featured-grid-3">
     <div class="featured-card">
       <div class="card-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/api/placeholder/600/300'); background-size: cover;">
-        <span>Виртуализация серверов</span>
+        <span>Multipass</span>
       </div>
       <div class="card-content">
-        <h3>Серверная виртуализация</h3>
-        <p>Технологии для создания и управления виртуальными машинами, позволяющие максимально использовать мощности серверного оборудования, снизить затраты на инфраструктуру и обеспечить гибкость развертывания.</p>
-        <a href="#server-virtualization" class="learn-more">Подробнее</a>
+        <h3>Multipass</h3>
+        <p>Легковесное решение от Canonical для быстрого создания и управления виртуальными машинами Ubuntu на MacBook. Идеально для разработчиков и DevOps.</p>
+        <a href="#multipass" class="learn-more">Подробнее</a>
       </div>
     </div>
     <div class="featured-card">
       <div class="card-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/api/placeholder/600/300'); background-size: cover;">
-        <span>Контейнеризация</span>
+        <span>UTM</span>
       </div>
       <div class="card-content">
-        <h3>Контейнерная виртуализация</h3>
-        <p>Легковесные контейнерные технологии для изоляции приложений и их зависимостей, обеспечивающие быстрое масштабирование, стандартизацию разработки и более эффективное использование ресурсов.</p>
-        <a href="#container-virtualization" class="learn-more">Подробнее</a>
+        <h3>UTM</h3>
+        <p>Полнофункциональный эмулятор и виртуализатор для macOS, поддерживающий как Intel, так и Apple Silicon. Позволяет запускать Linux, Windows и другие операционные системы.</p>
+        <a href="#utm" class="learn-more">Подробнее</a>
+      </div>
+    </div>
+    <div class="featured-card">
+      <div class="card-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/api/placeholder/600/300'); background-size: cover;">
+        <span>Docker Desktop</span>
+      </div>
+      <div class="card-content">
+        <h3>Docker Desktop</h3>
+        <p>Интегрированная платформа для разработки, тестирования и развертывания контейнеризованных приложений на MacBook с удобным графическим интерфейсом.</p>
+        <a href="#docker-desktop" class="learn-more">Подробнее</a>
       </div>
     </div>
   </div>
 
   <div class="content-section">
-    <div id="server-virtualization" class="content-block">
-      <h3>Серверная виртуализация</h3>
-      <p>Серверная виртуализация позволяет запускать несколько виртуальных серверов на одном физическом сервере, что значительно повышает эффективность использования оборудования. Виртуальные машины (ВМ) изолированы друг от друга, имеют собственные операционные системы и могут быть легко перемещены между физическими серверами.</p>
+    <div id="multipass" class="content-block">
+      <h3>Multipass: Виртуальные машины Ubuntu за секунды</h3>
+      <p>Multipass — это легковесный инструмент от Canonical для быстрого создания и управления виртуальными машинами Ubuntu на MacBook. Он позволяет создавать изолированные среды разработки с минимальными затратами ресурсов и без сложных настроек.</p>
 
-      <h4 class="section-subtitle">Основные платформы серверной виртуализации</h4>
+      <img src="/api/placeholder/1000/600" alt="Интерфейс Multipass на MacBook" class="screenshot">
 
-      <div class="featured-grid">
-        <div class="featured-card">
-          <div class="card-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/api/placeholder/600/300'); background-size: cover;">
-            <span>VMware</span>
-          </div>
-          <div class="card-content">
-            <h3>VMware vSphere</h3>
-            <p>Лидирующая платформа для виртуализации серверов, предлагающая широкий набор функций для управления виртуальными машинами, включая высокую доступность, миграцию в реальном времени и продвинутую систему безопасности.</p>
-          </div>
-        </div>
-        <div class="featured-card">
-          <div class="card-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/api/placeholder/600/300'); background-size: cover;">
-            <span>Microsoft</span>
-          </div>
-          <div class="card-content">
-            <h3>Microsoft Hyper-V</h3>
-            <p>Интегрированная в Windows Server технология виртуализации, обеспечивающая высокую производительность и совместимость с экосистемой Microsoft, включая инструменты управления System Center.</p>
-          </div>
-        </div>
+      <h4 class="section-subtitle">Особенности Multipass на MacBook</h4>
+      <div class="mac-specific">
+        <p><strong>Оптимизация для macOS:</strong> Multipass использует встроенную в macOS технологию виртуализации (Hypervisor.framework), что обеспечивает высокую производительность и низкое потребление ресурсов. На M1/M2/M3 Mac Multipass использует возможности Apple Silicon для эффективной виртуализации.</p>
       </div>
 
-      <div class="featured-grid" style="margin-top: 40px;">
-        <div class="featured-card">
-          <div class="card-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/api/placeholder/600/300'); background-size: cover;">
-            <span>Linux</span>
-          </div>
-          <div class="card-content">
-            <h3>KVM (Kernel-based Virtual Machine)</h3>
-            <p>Открытая технология виртуализации, встроенная в ядро Linux, обеспечивающая высокую производительность и хорошо интегрирующаяся с другими открытыми технологиями, такими как QEMU и libvirt.</p>
-          </div>
-        </div>
-        <div class="featured-card">
-          <div class="card-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/api/placeholder/600/300'); background-size: cover;">
-            <span>Citrix</span>
-          </div>
-          <div class="card-content">
-            <h3>Citrix Hypervisor</h3>
-            <p>Платформа виртуализации, оптимизированная для рабочих нагрузок виртуальных десктопов и приложений, предлагающая улучшенную графическую производительность и тесную интеграцию с Citrix Virtual Apps and Desktops.</p>
-          </div>
-        </div>
-      </div>
-
-      <h4 class="section-subtitle">Преимущества серверной виртуализации</h4>
       <ul>
-        <li><strong>Повышение эффективности использования ресурсов</strong> – консолидация нескольких рабочих нагрузок на одном физическом сервере</li>
-        <li><strong>Снижение затрат</strong> – уменьшение расходов на оборудование, энергопотребление и охлаждение</li>
-        <li><strong>Повышение отказоустойчивости</strong> – быстрое восстановление после сбоев и возможность миграции ВМ</li>
-        <li><strong>Гибкость развертывания</strong> – быстрое создание новых серверов и тестовых сред</li>
-        <li><strong>Упрощенное управление</strong> – централизованное управление всеми виртуальными машинами</li>
+        <li><strong>Простой CLI-интерфейс</strong> – создание, запуск и управление виртуальными машинами через командную строку</li>
+        <li><strong>Быстрый запуск</strong> – виртуальная машина Ubuntu готова к работе за считанные секунды</li>
+        <li><strong>Минимальное потребление ресурсов</strong> – идеально для MacBook с ограниченной памятью или хранилищем</li>
+        <li><strong>Интеграция с macOS</strong> – поддержка быстрого обмена файлами между macOS и виртуальной машиной</li>
+        <li><strong>Автоматическое обновление образов</strong> – всегда актуальные версии Ubuntu</li>
       </ul>
 
-      <h4 class="section-subtitle">Сравнение платформ виртуализации</h4>
+      <h4 class="section-subtitle">Основные команды Multipass для MacBook</h4>
+
       <table class="comparison-table">
         <tr>
-          <th>Платформа</th>
-          <th>Гипервизор</th>
-          <th>Масштабируемость</th>
-          <th>Функции</th>
-          <th>Интеграция</th>
+          <th>Команда</th>
+          <th>Описание</th>
+          <th>Пример</th>
         </tr>
         <tr>
-          <td>VMware vSphere</td>
-          <td>Тип 1 (bare-metal)</td>
-          <td>Высокая (до 768 vCPU, 24TB RAM на хост)</td>
-          <td>vMotion, DRS, HA, FT, vSAN</td>
-          <td>Широкая экосистема VMware</td>
+          <td>multipass launch</td>
+          <td>Создание и запуск новой виртуальной машины</td>
+          <td>multipass launch --name my-vm</td>
         </tr>
         <tr>
-          <td>Microsoft Hyper-V</td>
-          <td>Тип 1</td>
-          <td>Высокая (до 512 vCPU, 24TB RAM на хост)</td>
-          <td>Live Migration, Storage Migration, Replica</td>
-          <td>Azure, System Center</td>
+          <td>multipass list</td>
+          <td>Просмотр списка всех виртуальных машин</td>
+          <td>multipass list</td>
         </tr>
         <tr>
-          <td>KVM</td>
-          <td>Тип 1 (встроен в ядро)</td>
-          <td>Высокая (до 288 vCPU, 4TB RAM на хост)</td>
-          <td>Live Migration, Storage Management</td>
-          <td>OpenStack, libvirt</td>
+          <td>multipass shell</td>
+          <td>Доступ к командной строке виртуальной машины</td>
+          <td>multipass shell my-vm</td>
         </tr>
         <tr>
-          <td>Citrix Hypervisor</td>
-          <td>Тип 1</td>
-          <td>Средняя (до 288 vCPU, 1.5TB RAM на хост)</td>
-          <td>Live Migration, GPU Pass-through</td>
-          <td>Citrix Virtual Apps and Desktops</td>
+          <td>multipass mount</td>
+          <td>Монтирование директории из macOS в виртуальную машину</td>
+          <td>multipass mount ~/Projects my-vm:/home/ubuntu/projects</td>
+        </tr>
+        <tr>
+          <td>multipass stop</td>
+          <td>Остановка виртуальной машины</td>
+          <td>multipass stop my-vm</td>
+        </tr>
+        <tr>
+          <td>multipass delete</td>
+          <td>Удаление виртуальной машины</td>
+          <td>multipass delete my-vm</td>
         </tr>
       </table>
     </div>
 
-    <div id="container-virtualization" class="content-block">
-      <h3>Контейнерная виртуализация</h3>
-      <p>Контейнерная виртуализация представляет собой легковесную альтернативу виртуальным машинам. Контейнеры изолируют приложения и их зависимости, используя при этом общее ядро операционной системы хоста, что делает их более эффективными с точки зрения использования ресурсов.</p>
+    <div id="utm" class="content-block">
+      <h3>UTM: Универсальная виртуализация для MacBook</h3>
+      <p>UTM (Universal Type Machine) — это мощный эмулятор и виртуализатор с открытым исходным кодом для macOS, который позволяет запускать практически любую операционную систему на MacBook, включая разные версии Windows, Linux и даже экзотические системы.</p>
 
-      <h4 class="section-subtitle">Основные технологии контейнеризации</h4>
+      <img src="/api/placeholder/1000/600" alt="Интерфейс UTM на MacBook" class="screenshot">
 
-      <div class="featured-grid">
-        <div class="featured-card">
-          <div class="card-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/api/placeholder/600/300'); background-size: cover;">
-            <span>Docker</span>
-          </div>
-          <div class="card-content">
-            <h3>Docker</h3>
-            <p>Самая популярная платформа контейнеризации, предоставляющая простые инструменты для создания, развертывания и запуска приложений в контейнерах. Docker стандартизировал формат контейнеров и экосистему инструментов.</p>
-          </div>
-        </div>
-        <div class="featured-card">
-          <div class="card-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/api/placeholder/600/300'); background-size: cover;">
-            <span>Kubernetes</span>
-          </div>
-          <div class="card-content">
-            <h3>Kubernetes</h3>
-            <p>Платформа оркестрации контейнеров, которая автоматизирует развертывание, масштабирование и управление контейнеризованными приложениями. Kubernetes обеспечивает высокую доступность и масштабируемость.</p>
-          </div>
-        </div>
+      <h4 class="section-subtitle">Особенности UTM на MacBook</h4>
+      <div class="mac-specific">
+        <p><strong>Оптимизация для Apple Silicon:</strong> UTM отлично работает как на Intel Mac, так и на MacBook с Apple Silicon (M1/M2/M3). На Apple Silicon используется встроенная поддержка виртуализации для запуска ARM-версий ОС с практически нативной производительностью, а для x86-систем применяется эмуляция QEMU.</p>
       </div>
 
-      <h4 class="section-subtitle">Преимущества контейнерной виртуализации</h4>
       <ul>
-        <li><strong>Эффективность ресурсов</strong> – контейнеры потребляют меньше ресурсов, чем виртуальные машины</li>
-        <li><strong>Скорость запуска</strong> – контейнеры запускаются за секунды, в отличие от минут для ВМ</li>
-        <li><strong>"Пишите один раз, запускайте где угодно"</strong> – стандартизированное окружение</li>
-        <li><strong>Микросервисная архитектура</strong> – идеально подходит для современных подходов к разработке</li>
-        <li><strong>DevOps-интеграция</strong> – упрощает CI/CD процессы</li>
+        <li><strong>Удобный графический интерфейс</strong> – простая настройка и управление виртуальными машинами</li>
+        <li><strong>Поддержка множества операционных систем</strong> – Windows, Linux, macOS, BSD и многие другие</li>
+        <li><strong>Два режима работы</strong> – виртуализация для ARM-систем и эмуляция для x86-систем на Apple Silicon</li>
+        <li><strong>Широкие возможности настройки</strong> – гибкая конфигурация параметров виртуальной машины</li>
+        <li><strong>Интеграция с macOS</strong> – поддержка общего буфера обмена, общих папок и сетевого доступа</li>
+        <li><strong>USB-проброс</strong> – подключение USB-устройств напрямую к виртуальной машине</li>
       </ul>
 
-      <h4 class="section-subtitle">Сравнение ВМ и контейнеров</h4>
+      <h4 class="section-subtitle">Производительность UTM на разных MacBook</h4>
+
       <table class="comparison-table">
         <tr>
-          <th>Характеристика</th>
-          <th>Виртуальные машины</th>
-          <th>Контейнеры</th>
+          <th>Тип MacBook</th>
+          <th>Виртуализация ARM-ОС</th>
+          <th>Эмуляция x86-ОС</th>
+          <th>Рекомендуемые ОС</th>
         </tr>
         <tr>
-          <td>Виртуализация</td>
-          <td>Полная (включая ядро ОС)</td>
-          <td>На уровне ОС (общее ядро)</td>
+          <td>MacBook с M1/M2/M3</td>
+          <td>Высокая (почти нативная)</td>
+          <td>Средняя (эмуляция QEMU)</td>
+          <td>ARM Linux, ARM Windows, macOS</td>
         </tr>
         <tr>
-          <td>Размер</td>
-          <td>Гигабайты</td>
-          <td>Мегабайты</td>
+          <td>Intel MacBook</td>
+          <td>Средняя (через QEMU)</td>
+          <td>Высокая (почти нативная)</td>
+          <td>Windows, Linux, macOS</td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="docker-desktop" class="content-block">
+      <h3>Docker Desktop: Контейнеризация на MacBook</h3>
+      <p>Docker Desktop — это полноценная платформа для разработки, тестирования и развертывания контейнеризованных приложений на MacBook. Она предоставляет готовую среду для работы с Docker-контейнерами с удобным графическим интерфейсом.</p>
+
+      <img src="/api/placeholder/1000/600" alt="Интерфейс Docker Desktop на MacBook" class="screenshot">
+
+      <h4 class="section-subtitle">Особенности Docker Desktop на MacBook</h4>
+      <div class="mac-specific">
+        <p><strong>Оптимизации для macOS:</strong> Docker Desktop на MacBook использует специальную прослойку виртуализации для запуска контейнеров Linux. На Intel Mac используется технология HyperKit (на основе xhyve), а на Apple Silicon (M1/M2/M3) — собственный гипервизор от Apple с оптимизациями для ARM-архитектуры. Это обеспечивает высокую производительность даже на базе разных архитектур.</p>
+      </div>
+
+      <ul>
+        <li><strong>Интуитивный графический интерфейс</strong> – удобное управление контейнерами, образами и томами</li>
+        <li><strong>Интеграция с IDE</strong> – тесная интеграция с популярными средами разработки, включая Visual Studio Code</li>
+        <li><strong>Поддержка Docker Compose</strong> – легкое управление многоконтейнерными приложениями</li>
+        <li><strong>Kubernetes</strong> – встроенный кластер Kubernetes для оркестрации контейнеров</li>
+        <li><strong>Оптимизация ресурсов</strong> – гибкие настройки использования CPU, памяти и диска</li>
+        <li><strong>Режим разработки</strong> – автоматическое обновление контейнеров при изменении кода</li>
+      </ul>
+
+      <h4 class="section-subtitle">Сравнение производительности Docker Desktop на разных MacBook</h4>
+
+      <table class="comparison-table">
+        <tr>
+          <th>Параметр</th>
+          <th>MacBook с M1/M2/M3</th>
+          <th>Intel MacBook</th>
         </tr>
         <tr>
-          <td>Время запуска</td>
-          <td>Минуты</td>
-          <td>Секунды</td>
+          <td>Технология виртуализации</td>
+          <td>Apple Hypervisor (нативный ARM)</td>
+          <td>HyperKit (на основе xhyve)</td>
         </tr>
         <tr>
-          <td>Изоляция</td>
+          <td>Запуск платформы</td>
+          <td>10-15 секунд</td>
+          <td>20-30 секунд</td>
+        </tr>
+        <tr>
+          <td>Потребление памяти</td>
+          <td>~1-2 ГБ базовое</td>
+          <td>~2-3 ГБ базовое</td>
+        </tr>
+        <tr>
+          <td>Производительность сети</td>
           <td>Высокая</td>
           <td>Средняя</td>
         </tr>
         <tr>
-          <td>Производительность</td>
-          <td>Хорошая, с накладными расходами</td>
-          <td>Близкая к нативной</td>
+          <td>Производительность I/O</td>
+          <td>Выше среднего</td>
+          <td>Средняя</td>
         </tr>
         <tr>
-          <td>Подходит для</td>
-          <td>Разные ОС, высокая изоляция</td>
-          <td>Микросервисы, DevOps, масштабирование</td>
+          <td>Поддержка мультиархитектуры</td>
+          <td>Встроенная поддержка arm64 + эмуляция amd64</td>
+          <td>Нативная поддержка amd64, ограниченная поддержка arm64</td>
         </tr>
       </table>
+
+      <h4 class="section-subtitle">Оптимизации Docker Desktop для MacBook</h4>
+      <ul>
+        <li><strong>File sharing</strong> – оптимизированный обмен файлами между macOS и контейнерами</li>
+        <li><strong>Volume mounting</strong> – улучшенная производительность при монтировании томов</li>
+        <li><strong>Network proxying</strong> – эффективная работа с сетевыми подключениями</li>
+        <li><strong>VirtioFS</strong> – новая файловая система для MacBook M1/M2/M3 с улучшенной производительностью</li>
+        <li><strong>Rosetta 2 интеграция</strong> – запуск контейнеров x86_64 на Apple Silicon</li>
+      </ul>
     </div>
   </div>
+
+  <h2 class="section-title">Сравнение решений для виртуализации на MacBook</h2>
+  <table class="comparison-table">
+    <tr>
+      <th>Параметр</th>
+      <th>Multipass</th>
+      <th>UTM</th>
+      <th>Docker Desktop</th>
+    </tr>
+    <tr>
+      <td>Тип виртуализации</td>
+      <td>Виртуальные машины (Ubuntu)</td>
+      <td>Полная виртуализация/эмуляция</td>
+      <td>Контейнеризация</td>
+    </tr>
+    <tr>
+      <td>Поддерживаемые ОС</td>
+      <td>Ubuntu</td>
+      <td>Любые (Windows, Linux, macOS и др.)</td>
+      <td>Контейнеры Linux</td>
+    </tr>
+    <tr>
+      <td>Интерфейс</td>
+      <td>CLI (командная строка)</td>
+      <td>GUI (графический)</td>
+      <td>GUI + CLI</td>
+    </tr>
+    <tr>
+      <td>Требования к ресурсам</td>
+      <td>Низкие</td>
+      <td>Высокие</td>
+      <td>Средние</td>
+    </tr>
+    <tr>
+      <td>Apple Silicon (M1/M2/M3)</td>
+      <td>Полная поддержка</td>
+      <td>Полная поддержка</td>
+      <td>Полная поддержка</td>
+    </tr>
+    <tr>
+      <td>Идеально для</td>
+      <td>Разработка на Ubuntu, тестирование</td>
+      <td>Запуск полноценных ОС, игры, ретро-эмуляция</td>
+      <td>DevOps, микросервисы, CI/CD</td>
+    </tr>
+  </table>
 </div>
 
 <div class="courses-section">
   <div class="container">
-    <h2 class="skills-title">Рекомендуемые курсы по виртуализации</h2>
+    <h2 class="skills-title">Рекомендуемые курсы по виртуализации на MacBook</h2>
 
     <div class="course-card">
-      <h3>Основы VMware vSphere: установка, настройка, управление</h3>
-      <p>Изучите основные компоненты VMware vSphere, научитесь устанавливать и настраивать ESXi и vCenter Server, управлять виртуальными машинами и создавать отказоустойчивую инфраструктуру.</p>
-      <div class="course-info">
-        <span>Длительность: 5 недель</span>
-        <span>Уровень: Начальный-Средний</span>
-      </div>
-    </div>
-
-    <div class="course-card">
-      <h3>Практическое руководство по Microsoft Hyper-V</h3>
-      <p>Освойте технологию Hyper-V в Windows Server, включая настройку кластеров, репликацию, миграцию и интеграцию с System Center Virtual Machine Manager.</p>
+      <h3>Docker и контейнеризация на MacBook: от основ до продвинутого уровня</h3>
+      <p>Научитесь эффективно использовать Docker Desktop на MacBook для разработки, тестирования и деплоя контейнеризованных приложений с учётом особенностей архитектуры Apple Silicon и Intel.</p>
       <div class="course-info">
         <span>Длительность: 4 недели</span>
-        <span>Уровень: Средний</span>
-      </div>
-    </div>
-
-    <div class="course-card">
-      <h3>Docker и контейнеризация: от основ до продвинутого уровня</h3>
-      <p>Научитесь создавать, развертывать и управлять Docker-контейнерами, создавать собственные образы и использовать Docker Compose для оркестрации нескольких контейнеров.</p>
-      <div class="course-info">
-        <span>Длительность: 3 недели</span>
         <span>Уровень: Начальный-Продвинутый</span>
       </div>
     </div>
 
     <div class="course-card">
-      <h3>Kubernetes для администраторов</h3>
-      <p>Погрузитесь в мир оркестрации контейнеров с Kubernetes, изучите управление кластерами, развертывание приложений, масштабирование и мониторинг контейнеризованных приложений.</p>
+      <h3>Виртуализация на Apple Silicon: UTM и Multipass</h3>
+      <p>Освойте мощные возможности виртуализации на MacBook с процессорами M1/M2/M3. Узнайте, как создавать эффективные виртуальные машины с Windows и Linux с максимальной производительностью.</p>
       <div class="course-info">
-        <span>Длительность: 6 недель</span>
-        <span>Уровень: Продвинутый</span>
+        <span>Длительность: 3 недели</span>
+        <span>Уровень: Средний</span>
       </div>
     </div>
-  </div>
-</div>
 
-<div class="container">
-  <div class="quick-links">
-    <h2>Хотите узнать больше?</h2>
-    <a href="tutorials.html" class="btn">Все учебные материалы</a>
-    <a href="tools.html" class="btn">Рекомендуемые инструменты</a>
-    <a href="forum.html" class="btn">Обсудить на форуме</a>
-  </div>
-</div>
-
-<footer>
-  <div class="container">
-    <p>&copy; 2025 Максимов Алексей. Все права защищены.</p>
-    <p>Разработано для курсовой работы</p>
-  </div>
-</footer>
-</body>
-</html>
+    <div class="course-card">
+      <h3>Kubernetes на MacBook: локальная разработка и тестирование</h3>
+      <p>Изучите, как настроить и использовать локальный кластер Kubernetes с помощью Docker Desktop на MacBook для разработки и тестирования контейнеризованных приложений перед их развертыванием в облаке.</p>
+      <div class="course-info">
+        <span>Длительность: 5 недель</span>
+        <span>Уровень: Продвинутый</span>
+      </div>
