@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Средства управления виртуальными машинами и операционными средами на MacOS</title>
+  <!-- Добавление навигации сайта -->
+  <style>
+    /* Навигация */
+    header {
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      margin-bottom: 20px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      height: 44px;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: 500;
+      color: #ffffff;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-links li {
+      margin: 0 10px;
+    }
+
+    .nav-links a {
+      color: #f5f5f7;
+      text-decoration: none;
+      font-size: 14px;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    <!-- Оригинальные стили презентации -->
+    <style>
+     body {
+       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+       line-height: 1.6;
+       color: #333;
+       max-width: 1000px;
+       margin: 0 auto;
+       padding: 20px;
+       background-color: #f5f5f7;
+     }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 30px;
+      background: linear-gradient(135deg, #007aff, #5856d6);
+      color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 2.4em;
+      margin-bottom: 15px;
+    }
+
+    h2 {
+      font-size: 1.8em;
+      margin-top: 40px;
+      border-bottom: 2px solid #007aff;
+      padding-bottom: 10px;
+      color: #007aff;
+    }
+
+    h3 {
+      font-size: 1.4em;
+      color: #5856d6;
+      margin-top: 25px;
+    }
+
+    .author-info {
+      font-size: 1.1em;
+      margin-top: 20px;
+    }
+
+    .slide {
+      background-color: white;
+      padding: 25px;
+      margin-bottom: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .pros-cons {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .pros, .cons {
+      flex: 1;
+      min-width: 300px;
+      background-color: #f8f8f8;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .pros h4 {
+      color: #34c759;
+    }
+
+    .cons h4 {
+      color: #ff3b30;
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    li {
+      padding-left: 25px;
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    li:before {
+      content: "❖";
+      position: absolute;
+      left: 0;
+      color: #007aff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 25px 0;
+      font-size: 0.9em;
+    }
+
+    th {
+      background-color: #007aff;
+      color: white;
+      padding: 12px;
+      text-align: left;
+    }
+
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    .comparison {
+      display: flex;
+      justify-content: space-between;
+      text-align: center;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .comparison-item {
+      flex: 1;
+      background-color: #f8f8f8;
+      padding: 15px;
+      margin: 0 10px 20px;
+      border-radius: 8px;
+      min-width: 250px;
+    }
+
+    .comparison-item h3 {
+      color: #007aff;
+      margin-top: 0;
+    }
+
+    .conclusion {
+      background-color: #f0f8ff;
+      padding: 25px;
+      border-radius: 8px;
+      border-left: 5px solid #007aff;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+<!-- Добавленная навигация -->
+<header>
+  <nav>
+    <div class="logo">СисАдмин</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="tutorials.html">Учебные материалы</a></li>
+      <li><a href="tools.html">Инструменты</a></li>
+      <li><a href="forum.html">Форум</a></li>
+      <li><a href="about.html">О нас</a></li>
+      <li><a href="contacts.html">Контакты</a></li>
+      <li><a href="login.html">Вход</a></li>
+      <li><a href="register.html">Регистрация</a></li>
+    </ul>
+  </nav>
+</header>
+
+<header>
+  <h1>Средства управления виртуальными машинами и операционными средами на MacOS</h1>
+  <div class="author-info">
+    <p>Подготовил: Максимов А. М.</p>
+    <p>ИЦТМС 3-4</p>
+    <p>Преподаватель: доц, к.т.н. Иванов Н.А.</p>
+  </div>
+</header>
+
+<div class="slide">
+  <h2>Что такое виртуальные машины</h2>
+  <p>Виртуальная машина (ВМ) - это программная эмуляция компьютера, которая позволяет запускать одну операционную систему внутри другой. Это удобно для тестирования, разработки, запуска изолированных приложений и работы с разными ОС.</p>
+</div>
+
+<div class="slide">
+  <h2>Зачем нужна виртуализация на macOS</h2>
+  <ul>
+    <li>Для разработки и тестирования (например, Linux-сред)</li>
+    <li>Для запуска приложения, не поддерживаемых macOS</li>
+    <li>Для повышения безопасности - изоляция среды</li>
+  </ul>
+</div>
+
+<div class="slide">
+  <h2>Multipass</h2>
+  <p>Multipass - кроссплатформенное решение от Canonical для запуска минимальных Ubuntu ВМ</p>
+
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>Преимущества</h4>
+      <ul>
+        <li>Быстрый запуск Ubuntu-сред (одной командой)</li>
+        <li>Лёгкость и простота</li>
+        <li>Интеграция с облаком (например, AWS)</li>
+        <li>Подходит для разработчиков, работающих с Ubuntu</li>
+      </ul>
+    </div>
+
+    <div class="cons">
+      <h4>Недостатки</h4>
+      <ul>
+        <li>Только Ubuntu</li>
+        <li>Нет полноценного GUI</li>
+        <li>Не подходит для запуска Windows/других ОС</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="slide">
+  <h2>UTM</h2>
+  <p>UTM - открытое приложение для эмуляции и виртуализации на macOS (на базе QEMU)</p>
+
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>Преимущества</h4>
+      <ul>
+        <li>Поддерживает множество ОС: Windows, Linux, Android</li>
+        <li>Полностью локальное решение (без облака)</li>
+        <li>Интерфейс с GUI - легко настраивать</li>
+      </ul>
+    </div>
+
+    <div class="cons">
+      <h4>Недостатки</h4>
+      <ul>
+        <li>Менее производительный по сравнению с Multipass</li>
+        <li>Требует больше ручной настройки</li>
+        <li>Иногда не хватает драйверов</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="slide">
+  <h2>Docker Desktop</h2>
+  <p>Docker Desktop - средство контейнеризации, а не полной виртуализации</p>
+
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>Преимущества</h4>
+      <ul>
+        <li>Лёгкость и скорость (контейнеры меньше и быстрее ВМ)</li>
+        <li>Идеален для DevOps и микросервисов</li>
+        <li>Простой доступ к Docker Hub и другим репозиториям</li>
+      </ul>
+    </div>
+
+    <div class="cons">
+      <h4>Недостатки</h4>
+      <ul>
+        <li>Не поддерживает запуск полноценной ОС</li>
+        <li>Подходит только для приложений (не для настольной ОС)</li>
+        <li>Требует Rosetta 2 или Apple Silicon совместимости</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="slide">
+  <h2>Сравнение: Виртуальные машины vs Контейнеры</h2>
+
+  <div class="comparison">
+    <div class="comparison-item">
+      <h3>Виртуальные машины</h3>
+      <ul>
+        <li>Полная гостевая ОС внутри хост-системы</li>
+        <li>Более тяжелые: требуют больше ресурсов (CPU, RAM)</li>
+        <li>Долгое время запуска (до нескольких минут)</li>
+        <li>Можно запускать любую ОС (Windows, Linux и др.)</li>
+        <li>Отлично подходят для тестирования ОС</li>
+        <li>Высокий уровень изоляции</li>
+      </ul>
+    </div>
+
+    <div class="comparison-item">
+      <h3>Контейнеры</h3>
+      <ul>
+        <li>Используют ту же ОС, что и хост</li>
+        <li>Лёгкие: меньше потребления ресурсов</li>
+        <li>Быстрый старт (в секунды)</li>
+        <li>Только приложения, совместимые с хост-ОС</li>
+        <li>Отлично подходят для разработки и развертывания ПО</li>
+        <li>Изоляция на уровне процессов</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="slide">
+  <h2>Сравнительная таблица</h2>
+
+  <table>
+    <tr>
+      <th>Характеристика</th>
+      <th>Multipass</th>
+      <th>UTM</th>
+      <th>Docker Desktop</th>
+    </tr>
+    <tr>
+      <td>Тип технологии</td>
+      <td>Виртуализация</td>
+      <td>Эмуляция/Виртуализация</td>
+      <td>Контейнеризация</td>
+    </tr>
+    <tr>
+      <td>ОС в гостевой среде</td>
+      <td>Ubuntu</td>
+      <td>Любая</td>
+      <td>Только образы</td>
+    </tr>
+    <tr>
+      <td>Интерфейс</td>
+      <td>CLI</td>
+      <td>GUI</td>
+      <td>GUI + CLI</td>
+    </tr>
+    <tr>
+      <td>Скорость запуска</td>
+      <td>Высокая</td>
+      <td>Средняя</td>
+      <td>Очень высокая</td>
+    </tr>
+    <tr>
+      <td>Требования к ресурсам</td>
+      <td>Средние</td>
+      <td>Высокие</td>
+      <td>Низкие</td>
+    </tr>
+    <tr>
+      <td>Простота настройки</td>
+      <td>Простая</td>
+      <td>Средняя</td>
+      <td>Простая</td>
+    </tr>
+    <tr>
+      <td>Лучшее применение</td>
+      <td>Dev/Ubuntu</td>
+      <td>Изучение и настройка ОС</td>
+      <td>DevOps, микросервисы</td>
+    </tr>
+  </table>
+</div>
+
+<div class="slide">
+  <h2>Сценарии использования</h2>
+  <ul>
+    <li>Разработка под Linux/Ubuntu: Multipass</li>
+    <li>Тестирование Windows/Linux GUI: UTM</li>
+    <li>DevOPS и CI/CD: Docker Desktop</li>
+    <li>Низкий порог входа: Docker или Multipass</li>
+    <li>Гибкость и поддержка множества ОС: UTM</li>
+  </ul>
+</div>
+
+<div class="slide conclusion">
+  <h2>Заключение</h2>
+  <ul>
+    <li>Нет универсального решения - выбор зависит от задач</li>
+    <li>Multipass - для легкой Ubuntu виртуализации</li>
+    <li>UTM - для сложных и графических ОС</li>
+    <li>Docker Desktop - для разработчиков и CI/CD</li>
+  </ul>
+  <p>На macOS возможности виртуализации ограничены Apple Silicon архитектурой, но с помощью этих инструментов можно добиться высокой эффективности.</p>
+</div>
+
+</body>
+</html>
