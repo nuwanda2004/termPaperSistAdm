@@ -553,6 +553,47 @@
       left: 0;
       color: #ff3b30;
     }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      padding-top: 60px;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.9);
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .modal-content {
+      display: block;
+      margin: auto;
+      max-width: 90%;
+      max-height: 80%;
+      animation: zoomIn 0.4s ease;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
+
+    .close {
+      position: absolute;
+      top: 20px; right: 35px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.7); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
   </style>
 </head>
 <body>
@@ -746,6 +787,47 @@
           border-radius: 8px;
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
+
+        .modal {
+          display: none;
+          position: fixed;
+          z-index: 9999;
+          padding-top: 60px;
+          left: 0; top: 0;
+          width: 100%; height: 100%;
+          background-color: rgba(0,0,0,0.9);
+          animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .modal-content {
+          display: block;
+          margin: auto;
+          max-width: 90%;
+          max-height: 80%;
+          animation: zoomIn 0.4s ease;
+          border-radius: 8px;
+          box-shadow: 0 0 20px rgba(255,255,255,0.2);
+        }
+
+        .close {
+          position: absolute;
+          top: 20px; right: 35px;
+          color: #f1f1f1;
+          font-size: 40px;
+          font-weight: bold;
+          cursor: pointer;
+        }
+
+        @keyframes zoomIn {
+          from { transform: scale(0.7); opacity: 0; }
+          to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+
       </style>
 
       <div class="app-screenshots">
@@ -1018,3 +1100,4 @@
     <p>Информация на сайте предоставлена в ознакомительных целях.</p>
   </div>
 </footer>
+
